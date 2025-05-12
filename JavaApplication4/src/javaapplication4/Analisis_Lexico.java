@@ -8,7 +8,7 @@ package javaapplication4;
  *
  * @author Gerardo
  */
-public class Prb_AnalizadorLexico
+public class Analisis_Lexico
 {
     
 }
