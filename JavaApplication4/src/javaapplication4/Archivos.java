@@ -25,8 +25,6 @@ public class Archivos
  * @author David de la Luz
  */
 
-public class ManejoDeArchivos {
-
     public static void guardarArchivo(String texto) {
         FileWriter fichero = null;
         PrintWriter pw = null;
@@ -43,14 +41,14 @@ public class ManejoDeArchivos {
             pw.println(texto);
 
         } catch (IOException ex) {
-            Logger.getLogger(ManejoDeArchivos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Archivos.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
             if (fichero != null) {
                 try {
                     fichero.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(ManejoDeArchivos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Archivos.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -74,15 +72,15 @@ public class ManejoDeArchivos {
             }
 
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(ManejoDeArchivos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Archivos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(ManejoDeArchivos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Archivos.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (fr != null) {
                 try {
                     fr.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(ManejoDeArchivos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Archivos.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -91,4 +89,3 @@ public class ManejoDeArchivos {
     }
 }
 
-}

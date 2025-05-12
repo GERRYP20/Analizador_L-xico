@@ -17,6 +17,7 @@ public class PrbLexico extends javax.swing.JFrame
     public PrbLexico()
     {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -29,21 +30,172 @@ public class PrbLexico extends javax.swing.JFrame
     private void initComponents()
     {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TxAnalisis = new javax.swing.JTextArea();
+        BtnCargar = new javax.swing.JButton();
+        BtnGenera = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TbAnalisis = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("STXihei", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Tabla de análisis");
+
+        TxAnalisis.setColumns(20);
+        TxAnalisis.setRows(5);
+        jScrollPane1.setViewportView(TxAnalisis);
+
+        BtnCargar.setBackground(new java.awt.Color(102, 102, 102));
+        BtnCargar.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        BtnCargar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnCargar.setText("Cargar Texto");
+        BtnCargar.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                BtnCargarMouseClicked(evt);
+            }
+        });
+
+        BtnGenera.setBackground(new java.awt.Color(102, 102, 102));
+        BtnGenera.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        BtnGenera.setForeground(new java.awt.Color(255, 255, 255));
+        BtnGenera.setText("Generar Análisis");
+        BtnGenera.setEnabled(false);
+        BtnGenera.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                BtnGeneraActionPerformed(evt);
+            }
+        });
+
+        TbAnalisis.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String []
+            {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(TbAnalisis);
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("STXihei", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Texto de Análisis");
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication4/imagenes/azteca2.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(BtnGenera)
+                        .addGap(243, 243, 243)
+                        .addComponent(BtnCargar))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(87, 87, 87)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(147, 147, 147)
+                                .addComponent(jLabel2)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(76, 76, 76)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(98, 98, 98)
+                                .addComponent(jLabel3)))))
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(49, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1)
+                                .addGap(112, 112, 112)))))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnGenera)
+                    .addComponent(BtnCargar))
+                .addGap(53, 53, 53))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnGeneraActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BtnGeneraActionPerformed
+    {//GEN-HEADEREND:event_BtnGeneraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnGeneraActionPerformed
+
+    private void BtnCargarMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_BtnCargarMouseClicked
+    {//GEN-HEADEREND:event_BtnCargarMouseClicked
+        BtnGenera.setEnabled(true);
+        TxAnalisis.setText(Archivos.cargarArchivo());
+    }//GEN-LAST:event_BtnCargarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -91,5 +243,16 @@ public class PrbLexico extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCargar;
+    private javax.swing.JButton BtnGenera;
+    private javax.swing.JTable TbAnalisis;
+    private javax.swing.JTextArea TxAnalisis;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

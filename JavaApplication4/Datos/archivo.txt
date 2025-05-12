@@ -1,0 +1,17 @@
+estructura Inicio (
+    todos constante sinvalor arranque [ ] (
+        número numero1;
+        número numero2;
+        número resultado;
+
+        mostrar["Ingrese un número:"];
+
+        número1 = leer[ ];
+
+        número2 = 10;
+
+        resultado = numero1 - numero2;
+
+        mostrar["Resultado de la resta: " + resultado];
+    )
+)
