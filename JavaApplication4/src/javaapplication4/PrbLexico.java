@@ -4,12 +4,17 @@
  */
 package javaapplication4;
 
+import java.util.StringTokenizer;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Gerardo
  */
 public class PrbLexico extends javax.swing.JFrame
 {
+    DefaultTableModel mt = new DefaultTableModel();
+    int vecSal[];
 
     /**
      * Creates new form PrbLexico
@@ -18,6 +23,9 @@ public class PrbLexico extends javax.swing.JFrame
     {
         initComponents();
         this.setLocationRelativeTo(null);
+        String campos[] = {"Lexema", "Nombre", "Numero"};
+        mt.setColumnIdentifiers(campos);
+        TbAnalisis.setModel(mt);
     }
 
     /**
@@ -27,8 +35,7 @@ public class PrbLexico extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -60,11 +67,14 @@ public class PrbLexico extends javax.swing.JFrame
         BtnCargar.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
         BtnCargar.setForeground(new java.awt.Color(255, 255, 255));
         BtnCargar.setText("Cargar Texto");
-        BtnCargar.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        BtnCargar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnCargarMouseClicked(evt);
+            }
+        });
+        BtnCargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCargarActionPerformed(evt);
             }
         });
 
@@ -73,24 +83,25 @@ public class PrbLexico extends javax.swing.JFrame
         BtnGenera.setForeground(new java.awt.Color(255, 255, 255));
         BtnGenera.setText("Generar Análisis");
         BtnGenera.setEnabled(false);
-        BtnGenera.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        BtnGenera.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnGeneraMouseClicked(evt);
+            }
+        });
+        BtnGenera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnGeneraActionPerformed(evt);
             }
         });
 
         TbAnalisis.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
-            new String []
-            {
+            new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
@@ -194,8 +205,102 @@ public class PrbLexico extends javax.swing.JFrame
     private void BtnCargarMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_BtnCargarMouseClicked
     {//GEN-HEADEREND:event_BtnCargarMouseClicked
         BtnGenera.setEnabled(true);
+        mt.setRowCount(0);
         TxAnalisis.setText(Archivos.cargarArchivo());
     }//GEN-LAST:event_BtnCargarMouseClicked
+
+    private void BtnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCargarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnCargarActionPerformed
+
+    private void BtnGeneraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnGeneraMouseClicked
+        // TODO add your handling code here:
+        Archivos.guardarArchivo(TxAnalisis.getText());
+
+
+        StringTokenizer st = new StringTokenizer(TxAnalisis.getText(), "[],();+-*/ \t\n\r=!&|\"", true);
+        String texto = "";
+
+        //---------------------------------------- Funciones de automata
+        String cadena = "";
+        boolean bandera = false;
+
+        while (st.hasMoreElements()) {
+            cadena = st.nextToken();
+
+            if (cadena.equals("=")) {
+                texto += cadena;
+
+                if (st.hasMoreElements()) {
+                    cadena = st.nextToken();
+
+                    if (cadena.equals("=")) {
+                        texto += cadena + "\n";
+                    } else {
+                        texto += "\n" + cadena + "\n";
+                    }
+                }
+                texto += " " + "\n";
+
+            } else if (cadena.equals("!")) {
+                texto += cadena;
+
+                if (st.hasMoreElements()) {
+                    cadena = st.nextToken();
+
+                    if (cadena.equals("=")) {
+                        texto += cadena + "\n";
+                    } else {
+                        texto += "\n" + cadena + "\n";
+                    }
+                }
+
+            }  else if (cadena.equals("\"")) {
+                texto += cadena;
+
+                while (st.hasMoreElements()) {
+                    cadena = st.nextToken();
+
+                    if (cadena.equals("\"")) {
+                        texto += cadena + "\n";
+                        break;
+                    }
+
+                    if (cadena.equals("\n")) {
+                        texto += " ";
+                        break;
+                    }
+
+                    if (!cadena.equals(" ") && !cadena.equals("\t")) {
+                        texto += cadena;
+                    }
+                }
+
+            } else {
+                texto += cadena + "\n";
+            }
+        }
+
+        //
+        StringTokenizer st2 = new StringTokenizer(texto);
+        texto = "";
+        Analisis_Lexico lexico = new Analisis_Lexico();
+        vecSal = new int[st2.countTokens()];
+        int i = 0;
+        while (st2.hasMoreElements()) {
+            lexico = lexico.Etiquetar(st2.nextToken());
+
+            texto = texto + "\n" + lexico.lexema + "\t" + lexico.nombre + "\t" + lexico.numero;
+            vecSal[i] = lexico.numero;
+            i++;
+            
+        mt.addRow(new Object[]{lexico.lexema, lexico.nombre, lexico.numero});
+
+
+        }
+        //
+        //jTPCompilado.setText(texto);        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnGeneraMouseClicked
 
     /**
      * @param args the command line arguments
