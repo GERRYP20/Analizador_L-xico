@@ -82,6 +82,15 @@ public class Analisis_Lexico
         char arrCar[] = palabra.toCharArray();
         boolean bandera2 = true;
 
+        
+        // Si la palabra está entre comillas, es una cadena válida
+if (palabra.length() >= 2 && palabra.charAt(0) == '"' && palabra.charAt(palabra.length() - 1) == '"') {
+    objLexico.nombre = "Cadena";
+    objLexico.numero = 51;
+    return objLexico;
+}
+
+        
         for (int i = 0; i < arrCar.length; i++) {
             if (arrCar[i] == '"') {
                 pos = 0;
