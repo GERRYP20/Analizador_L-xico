@@ -15,6 +15,7 @@ public class Analisis_Lexico
     String nombre;
     int numero;
     
+    
         String[][] diccionario = {
             {"estructura", "PALABRA_RESERVADA", "1"},
             {"todos", "PALABRA_RESERVADA", "1"},
@@ -32,13 +33,13 @@ public class Analisis_Lexico
             {"*", "OPERADOR_ARITMETICO", "8"},
             {"/", "OPERADOR_ARITMETICO", "8"},
             {"(", "APERTURA", "9"},
-            {")", "CIERRE", "9"},
-            {"[", "AGRUPADOR", "9"},
-            {"]", "AGRUPADOR", "9"},
-            {";", "PUNTO_Y_COMA", "10"},
-            {"Inicio", "IDENTIFICADOR", "11"},
-            {"número1", "IDENTIFICADOR", "11"},
-            {"resultado", "IDENTIFICADOR", "11"}
+            {")", "CIERRE", "9"}, 
+            {"[", "AGRUPADOR", "10"},
+            {"]", "AGRUPADOR", "10"},
+            {";", "PUNTO_Y_COMA", "11"},
+            {"Inicio", "IDENTIFICADOR", "12"},
+            {"número1", "IDENTIFICADOR", "12"},
+            {"resultado", "IDENTIFICADOR", "12"}
         };
         
     public Analisis_Lexico Etiquetar(String palabra) {
