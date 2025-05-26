@@ -41,7 +41,22 @@ public class Analisis_Lexico
             {"resultado", "IDENTIFICADOR", "11"}
         };
         
-    public Analisis_Lexico Etiquetar(String palabra) {
+    public boolean CaracterEspecial(char caracter) 
+    {
+        char[] PI = {
+             '%',  '[', ']',  '_', '!',
+        };
+        boolean bandera = false;
+
+        for (int i = 0; i < PI.length; i++) {
+            if (caracter == PI[i]) {
+                bandera = true;
+            }
+        }
+        return bandera;
+    }
+    
+    public Analisis_Lexico Analiza(String palabra) {
         Analisis_Lexico objLexico = new Analisis_Lexico();
 
         objLexico.lexema = palabra;
@@ -89,7 +104,7 @@ public class Analisis_Lexico
             } else if (Character.isDigit(arrCar[i])) {
                 pos = 1;
                 
-            } else if (isPI(arrCar[i])) {
+            } else if (CaracterEspecial(arrCar[i])) {
                 pos = 2;
                 
             } else if (Character.isUpperCase(arrCar[i]) || Character.isLowerCase(arrCar[i])) {
@@ -121,17 +136,5 @@ public class Analisis_Lexico
 
     }
     
-    public boolean isPI(char caracter) {
-        char[] PI = {
-             '%',  '[', ']',  '_', '!',
-        };
-        boolean bandera = false;
 
-        for (int i = 0; i < PI.length; i++) {
-            if (caracter == PI[i]) {
-                bandera = true;
-            }
-        }
-        return bandera;
-    }
 }

@@ -35,7 +35,8 @@ public class PrbLexico extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -67,13 +68,17 @@ public class PrbLexico extends javax.swing.JFrame
         BtnCargar.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
         BtnCargar.setForeground(new java.awt.Color(255, 255, 255));
         BtnCargar.setText("Cargar Texto");
-        BtnCargar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        BtnCargar.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 BtnCargarMouseClicked(evt);
             }
         });
-        BtnCargar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        BtnCargar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 BtnCargarActionPerformed(evt);
             }
         });
@@ -83,25 +88,31 @@ public class PrbLexico extends javax.swing.JFrame
         BtnGenera.setForeground(new java.awt.Color(255, 255, 255));
         BtnGenera.setText("Generar Análisis");
         BtnGenera.setEnabled(false);
-        BtnGenera.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        BtnGenera.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 BtnGeneraMouseClicked(evt);
             }
         });
-        BtnGenera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        BtnGenera.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 BtnGeneraActionPerformed(evt);
             }
         });
 
         TbAnalisis.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
-            new String [] {
+            new String []
+            {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
@@ -129,19 +140,19 @@ public class PrbLexico extends javax.swing.JFrame
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(87, 87, 87)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(147, 147, 147)
-                                .addComponent(jLabel2)))
+                                .addComponent(jLabel2))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(76, 76, 76)
+                                .addGap(28, 28, 28)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(43, 43, 43)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(98, 98, 98)
+                                .addGap(50, 50, 50)
                                 .addComponent(jLabel3)))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -288,7 +299,7 @@ public class PrbLexico extends javax.swing.JFrame
         vecSal = new int[st2.countTokens()];
         int i = 0;
         while (st2.hasMoreElements()) {
-            lexico = lexico.Etiquetar(st2.nextToken());
+            lexico = lexico.Analiza(st2.nextToken());
 
             texto = texto + "\n" + lexico.lexema + "\t" + lexico.nombre + "\t" + lexico.numero;
             vecSal[i] = lexico.numero;
